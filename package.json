@@ -1,0 +1,17 @@
+{
+  "name": "mock-os",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Testing module for the os built-in module in Node.js",
+  "main": "mock-os.js",
+  "scripts": {
+    "test": "node spec-runner.js"
+  },
+  "keywords": [
+    "os",
+    "mock",
+    "test"
+  ],
+  "author": "Laurent Fortin",
+  "license": "MIT"
+}
