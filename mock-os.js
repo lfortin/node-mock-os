@@ -1,7 +1,7 @@
 // mock-os
 // Testing module for the os built-in module in Node.js
 
-// Copyright (c) 2015 lfortin
+// Copyright (c) 2015-2021 lfortin
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the

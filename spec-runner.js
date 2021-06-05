@@ -16,7 +16,7 @@ function getEOL(n) {
 process.stdout.write("running tests..." + getEOL(2));
 
 
-assert.doesNotThrow(function() {
+(function() {
 
   // API signature
   assert.ok(mock.restore, ".restore() method expected");
@@ -29,25 +29,28 @@ assert.doesNotThrow(function() {
   mock({
     freemem: 100,
     loadavg: [1, 2, 3],
-    EOL: 'TEST'
+    uptime: 10000,
+    release: 'fake_release'
   });
   
-  assert.deepEqual(os.freemem(), 100, ".freemem() expected to return 100");
-  assert.deepEqual(os.loadavg()[0], 1, ".loadavg() expected to return [1, 2, 3]");
-  assert.deepEqual(os.loadavg()[1], 2, ".loadavg() expected to return [1, 2, 3]");
-  assert.deepEqual(os.loadavg()[2], 3, ".loadavg() expected to return [1, 2, 3]");
-  assert.deepEqual(os.EOL, 'TEST', "EOL expected to be === 'TEST'");
+  assert.strictEqual(os.freemem(), 100, ".freemem() expected to return 100");
+  assert.strictEqual(os.loadavg()[0], 1, ".loadavg() expected to return [1, 2, 3]");
+  assert.strictEqual(os.loadavg()[1], 2, ".loadavg() expected to return [1, 2, 3]");
+  assert.strictEqual(os.loadavg()[2], 3, ".loadavg() expected to return [1, 2, 3]");
+  assert.strictEqual(os.uptime(), 10000, ".loadavg() expected to be === 10000");
+  assert.strictEqual(os.release(), 'fake_release', ".release() expected to be === 'fake_release'");
 
   process.stdout.write("mock() OK" + getEOL(1));
   
   mock.restore();
   
-  assert.notDeepEqual(os.freemem(), 100, ".freemem() expected to not return 100");
-  assert.notDeepEqual(os.loadavg()[0], 1, ".loadavg() expected to not return [1, 2, 3]");
-  assert.notDeepEqual(os.loadavg()[1], 2, ".loadavg() expected to not return [1, 2, 3]");
-  assert.notDeepEqual(os.loadavg()[2], 3, ".loadavg() expected to not return [1, 2, 3]");
-  assert.notDeepEqual(os.EOL, 'TEST', "EOL expected to be !== 'TEST'");
-  
+  assert.notStrictEqual(os.freemem(), 100, ".freemem() expected to not return 100");
+  assert.notStrictEqual(os.loadavg()[0], 1, ".loadavg() expected to not return [1, 2, 3]");
+  assert.notStrictEqual(os.loadavg()[1], 2, ".loadavg() expected to not return [1, 2, 3]");
+  assert.notStrictEqual(os.loadavg()[2], 3, ".loadavg() expected to not return [1, 2, 3]");
+  assert.notStrictEqual(os.uptime(), 10000, ".loadavg() expected to be !== 10000");
+  assert.notStrictEqual(os.release(), 'fake_release', ".release() expected to be !== 'fake_release'");
+
   process.stdout.write("mock.restore() OK" + getEOL(1));
-});
+})();
 

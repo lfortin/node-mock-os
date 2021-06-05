@@ -1,8 +1,12 @@
 {
   "name": "mock-os",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Testing module for the os built-in module in Node.js",
   "main": "mock-os.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lfortin/node-mock-os.git"
+  },
   "scripts": {
     "test": "node spec-runner.js"
   },
