@@ -18,19 +18,14 @@ var mock = require('mock-os');
 
 mock({
   'freemem': 100000,
-  'loadavg': [2, 2, 2]
+  'loadavg': [2, 2, 2],
+  'homedir': '/Users/username'
 });
 ```
 
-When you are ready to restore the `os` module to its original behavior, call [`mock.restore()`](#mockrestore).
+When you are ready to restore the `os` module to its original behavior, call `mock.restore()`.
 
 ```js
 // after a test runs
 mock.restore();
 ```
-
-
-## API
-
-(stay tuned for more docs...)
-
