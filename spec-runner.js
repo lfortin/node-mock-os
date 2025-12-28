@@ -2,18 +2,10 @@
 
 var assert = require('assert'),
     os = require('os'),
-    mock = require('./mock-os'),
-    EOL = os.EOL;
+    mock = require('./mock-os');
 
-function getEOL(n) {
-  var lines = [];
-  for(var i = 0; i < n; i++) {
-    lines.push(EOL);
-  }
-  return lines.join('');
-}
-
-process.stdout.write("running tests..." + getEOL(2));
+console.log("running tests...");
+console.log("");
 
 
 (function() {
@@ -23,13 +15,13 @@ process.stdout.write("running tests..." + getEOL(2));
 
   //assert.ok(monitor.whatever, "whatever expected");
 
-  process.stdout.write("API signature OK" + getEOL(1));
+  console.log("API signature OK");
 
   // fake system metrics
   mock({
     freemem: 100,
     loadavg: [1, 2, 3],
-    uptime: 10000,
+    uptime: 0, // falsy value
     release: 'fake_release'
   });
   
@@ -37,10 +29,10 @@ process.stdout.write("running tests..." + getEOL(2));
   assert.strictEqual(os.loadavg()[0], 1, ".loadavg() expected to return [1, 2, 3]");
   assert.strictEqual(os.loadavg()[1], 2, ".loadavg() expected to return [1, 2, 3]");
   assert.strictEqual(os.loadavg()[2], 3, ".loadavg() expected to return [1, 2, 3]");
-  assert.strictEqual(os.uptime(), 10000, ".loadavg() expected to be === 10000");
+  assert.strictEqual(os.uptime(), 0, ".uptime() expected to be === 0");
   assert.strictEqual(os.release(), 'fake_release', ".release() expected to be === 'fake_release'");
 
-  process.stdout.write("mock() OK" + getEOL(1));
+  console.log("mock() OK");
   
   mock.restore();
   
@@ -48,9 +40,8 @@ process.stdout.write("running tests..." + getEOL(2));
   assert.notStrictEqual(os.loadavg()[0], 1, ".loadavg() expected to not return [1, 2, 3]");
   assert.notStrictEqual(os.loadavg()[1], 2, ".loadavg() expected to not return [1, 2, 3]");
   assert.notStrictEqual(os.loadavg()[2], 3, ".loadavg() expected to not return [1, 2, 3]");
-  assert.notStrictEqual(os.uptime(), 10000, ".loadavg() expected to be !== 10000");
+  assert.notStrictEqual(os.uptime(), 0, ".uptime() expected to be !== 0");
   assert.notStrictEqual(os.release(), 'fake_release', ".release() expected to be !== 'fake_release'");
 
-  process.stdout.write("mock.restore() OK" + getEOL(1));
+  console.log("mock.restore() OK");
 })();
-

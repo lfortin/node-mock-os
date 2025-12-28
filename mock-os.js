@@ -34,7 +34,7 @@ for(var k in os) {
 
 function mock(config) {
   registry.forEach(function(k) {
-    if(config[k]) {
+    if(Object.prototype.hasOwnProperty.call(config, k)) {
       os[k] = typeof os[k] === 'function' ? function() {
         return config[k];
       } : config[k];
