@@ -1,6 +1,6 @@
 {
   "name": "mock-os",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testing module for the os built-in module in Node.js",
   "main": "mock-os.js",
   "type": "commonjs",
