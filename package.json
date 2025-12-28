@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "Testing module for the os built-in module in Node.js",
   "main": "mock-os.js",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git://github.com/lfortin/node-mock-os.git"
+  },
+  "author": {
+    "name": "Laurent Fortin",
+    "email": "laurent.fortin@gmail.com",
+    "url": "http://lfortin.github.io"
   },
   "scripts": {
     "test": "node spec-runner.js"
@@ -15,6 +21,5 @@
     "mock",
     "test"
   ],
-  "author": "Laurent Fortin",
   "license": "MIT"
 }
